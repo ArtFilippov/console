@@ -1,0 +1,25 @@
+{
+    "liftController": {
+        "logger": {
+            "name": "logSchindler",
+            "file": "logSchindler.log",
+            "level": "debug"
+        },
+        "comport": {
+            "class": "Comport",
+            "device": "/dev/ttyMOD1",
+            "baudrate": "B9600",
+            "oneStopBit": true
+        },
+        "comportReceiveTimeout": 50,
+        "comportBufSize": 255,
+        "maxFloor": 5
+    },
+    "cardReader": {
+        "logger": {
+            "name": "logSchindlerCardReader",
+            "file": "logSchindlerCardReader.log",
+            "level": "debug"
+        }
+    }
+}

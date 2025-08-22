@@ -1,0 +1,46 @@
+# add_subdirectory(Telegram)
+# add_subdirectory(Session)
+# add_subdirectory(LiftDeterminant)
+# add_subdirectory(Handler)
+# add_subdirectory(Authorization)
+# add_subdirectory(Adapter)
+# add_subdirectory(Action)
+# add_subdirectory(CommandFactory)
+# add_subdirectory(TelegramPatternMatcher)
+# add_subdirectory(SchindlerController)
+# # add_subdirectory(SchindlerCardReader)
+# add_subdirectory(FloorMapConverter)
+# add_subdirectory(VirtualAccess)
+
+add_library(schindler INTERFACE)
+
+
+# target_link_libraries(schindler INTERFACE commandRecognizer)
+# target_link_libraries(schindler INTERFACE Telegram)
+# target_link_libraries(schindler INTERFACE Session)
+# target_link_libraries(schindler INTERFACE LiftDeterminant)
+# target_link_libraries(schindler INTERFACE Handler)
+# target_link_libraries(schindler INTERFACE Authorization)
+# target_link_libraries(schindler INTERFACE Adapter)
+# target_link_libraries(schindler INTERFACE Action)
+# target_link_libraries(schindler INTERFACE TelegramPatternMatcher)
+# target_link_libraries(schindler INTERFACE SchindlerController)
+# # target_link_libraries(schindler INTERFACE SchindlerCardReader)
+# target_link_libraries(schindler INTERFACE FloorMapConverter)
+# target_link_libraries(schindler INTERFACE VirtualAccess)
+
+install(TARGETS schindler EXPORT schindler DESTINATION ${main_lib_dest})
+
+add_executable(console_main main.cpp)
+
+target_link_libraries(console_main PUBLIC pthread)
+target_link_libraries(console_main PUBLIC logger)
+target_link_libraries(console_main PUBLIC comport)
+target_link_libraries(console_main PUBLIC common)
+target_link_libraries(console_main PUBLIC connected_execution)
+target_link_libraries(console_main PUBLIC Boost::fiber Boost::context)
+
+
+
+
+

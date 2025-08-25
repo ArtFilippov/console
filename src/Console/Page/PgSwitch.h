@@ -10,7 +10,7 @@ class PgSwitch;
 }
 
 class console::PgSwitch : public Page {
-
+  public:
     class PgBack : public Page {
         std::shared_ptr<Page> pg;
         Focus onMe;
@@ -40,6 +40,7 @@ class console::PgSwitch : public Page {
         std::string title() const override { return pg->title(); }
     };
 
+  private:
     std::string title_;
     std::vector<PgBack> pages;
     std::size_t pgIt{0};

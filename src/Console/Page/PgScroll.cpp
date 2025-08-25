@@ -13,6 +13,7 @@ PgScroll::PgScroll(std::string title_, std::string top, std::string bottom, std:
 
 void PgScroll::handle(std::string cmd, Focus &f) {
     if (!f) {
+        body->handle(cmd, f);
         return;
     }
 

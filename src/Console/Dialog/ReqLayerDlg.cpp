@@ -4,17 +4,17 @@
 
 using namespace console;
 
-void ReqLayerDlg::subDialogs(std::function<void(const std::vector<std::shared_ptr<Dialog>> &)> fn) {
+void ReqLayerDlg::subDialogs(std::function<void(const std::vector<std::shared_ptr<Dialog>> &)> fn) const {
     std::shared_lock lg{mut};
     fn(dlg);
 }
 
-void ReqLayerDlg::responses(std::function<void(const std::vector<data_t> &)> fn) {
+void ReqLayerDlg::responses(std::function<void(const std::vector<data_t> &)> fn) const {
     std::shared_lock lg{mut};
     fn(resp);
 }
 
-data_t ReqLayerDlg::request() { return dlg[0]->request(); }
+data_t ReqLayerDlg::request() const { return dlg[0]->request(); }
 
 void ReqLayerDlg::newMsgs(data_t req, data_t res) {
     std::unique_lock lg{mut};

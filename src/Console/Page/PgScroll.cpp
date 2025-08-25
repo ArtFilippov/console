@@ -6,9 +6,17 @@
 
 using namespace console;
 
-PgScroll::PgScroll(std::string title_, std::string top, std::string bottom, std::shared_ptr<Page> body,
+PgScroll::PgScroll(std::string title_, std::string top_, std::string bottom_, std::shared_ptr<Page> body,
                    std::size_t lines)
-    : title_(title_), top(top), bottom(bottom), body(body), lines(lines), endLine(lines) {}
+    : title_(title_), top(top_), bottom(bottom_), body(body), lines(lines), endLine(lines) {
+    if (!top.empty()) {
+        top += '\n';
+    }
+
+    if (!bottom.empty()) {
+        bottom += '\n';
+    }
+}
 
 void PgScroll::handle(std::string cmd, Focus &f) {
     if (!f) {

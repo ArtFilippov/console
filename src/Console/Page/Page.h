@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <atomic>
 
 namespace console {
 class Page;
@@ -27,6 +28,22 @@ class console::Focus {
         focusOnMe = other.focusOnMe;
         other.focusOnMe = false;
         return *this;
+    }
+};
+
+class Lines {
+    std::atomic<std::size_t> num;
+
+  public:
+    Lines(std::size_t lineNum) : num(lineNum) {}
+
+    std::size_t lines() { return num.load(std::memory_order::acquire); }
+
+    void update(std::size_t lineNum) { num.store(lineNum, std::memory_order::relaxed); }
+
+    static Lines &instance() {
+        static Lines l{50};
+        return l;
     }
 };
 

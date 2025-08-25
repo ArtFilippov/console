@@ -20,7 +20,7 @@ PgSwitch::PgSwitch(std::string title_, std::vector<std::shared_ptr<Page>> pgs) :
             "_",
             options
         ),
-        50
+        Lines::instance().lines()
     );
     // clang-format on
     pages.emplace_back(mainPg);

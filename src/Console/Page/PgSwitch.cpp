@@ -21,31 +21,34 @@ PgSwitch::PgSwitch(std::string title_, std::vector<std::shared_ptr<Page>> pgs) :
         50
     );
     // clang-format on
-
-    pages.push_back(mainPg);
-    pages.insert(pages.end(), pgs.begin(), pgs.end());
+    pages.emplace_back(mainPg);
+    for (auto pg : pgs) {
+        pages.emplace_back(pg);
+    }
 }
 
-void PgSwitch::handle(std::string cmd, Focus &f) {
-    my = std::move(f);
-
-    if (my) {
-        if (cmd == "b") {
-            pgIt = 0;
-            return;
-        } else {
-            pgIt = common::stoi(cmd).value_or(pgIt);
-            return;
+void PgSwitch::handle(std::string cmd, Focus &onMe) {
+    if (onMe) {
+        int newPgIt = common::stoi(cmd).value_or(pgIt);
+        if (newPgIt < pages.size() && newPgIt > 0) {
+            pgIt = newPgIt;
         }
+
+        if (pgIt != 0) {
+            onMyPages = std::move(onMe);
+        }
+
+        return;
     }
 
-    if (pgIt == 0) {
-        pgIt = common::stoi(cmd).value_or(pgIt);
-    } else {
-        pages[pgIt]->handle(cmd);
+    pages[pgIt].handle(cmd, onMyPages);
+    onMe = std::move(onMyPages);
+
+    if (onMe) {
+        pgIt = 0;
     }
 }
 
-std::string PgSwitch::page() const { return pages[pgIt]->page(); }
+std::string PgSwitch::page() const { return pages[pgIt].page(); }
 
 std::string PgSwitch::title() const { return title_; }

@@ -12,10 +12,6 @@ PgScroll::PgScroll(std::string title_, std::string top_, std::string bottom_, st
     if (!top.empty()) {
         top += '\n';
     }
-
-    if (!bottom.empty()) {
-        bottom += '\n';
-    }
 }
 
 void PgScroll::handle(std::string cmd, Focus &f) {
@@ -32,8 +28,7 @@ void PgScroll::handle(std::string cmd, Focus &f) {
 }
 
 std::string PgScroll::page() const {
-    auto allBodyLines = common::linesOf(body->page());
-    int scroll = static_cast<int>(allBodyLines - common::linesOf(top) - common::linesOf(bottom));
+    int scroll = static_cast<int>(lines - common::linesOf(top) - common::linesOf(bottom));
 
     std::string middle;
     if (scroll > 0) {

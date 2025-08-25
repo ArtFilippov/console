@@ -15,9 +15,9 @@ std::string PgSlice::page() const {
     std::istringstream iss(original);
     std::string line;
     for (int i = 0; i < to; ++i) {
-
+        bool hasLine = bool(std::getline(iss, line));
         if (i >= from) {
-            if (std::getline(iss, line)) {
+            if (hasLine) {
                 window += line;
             }
             window += '\n';

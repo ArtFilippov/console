@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
+#include "Page/PgSliceTest.h"
 #include "Page/PgScrollTest.h"
 
 int main(int argc, char *argv[]) {

@@ -8,15 +8,7 @@
 
 class PgScrollTest : public ::testing::Test {
   protected:
-    PgScrollTest() {
-        std::string nums;
-
-        for (int i = 0; i < 1000; ++i) {
-            nums += std::to_string(i) + '\n';
-        };
-
-        fact = std::make_unique<PageFactory>(snew<PgBase>("nums", nums));
-    }
+    PgScrollTest() { fact = std::make_unique<PageFactory>(snew<PgBase>("nums", PageFactory{}.nums()->page())); }
 
     std::unique_ptr<PageFactory> fact;
     Focus f{true};
@@ -30,6 +22,7 @@ TEST_F(PgScrollTest, Page) {
 TEST_F(PgScrollTest, Scroll) {
     auto pg = fact->pureScroll();
     ASSERT_EQ(pg->page()[0], '0');
+    ASSERT_TRUE(bool(f));
     pg->handle("s", f);
     ASSERT_EQ(pg->page()[0], '1');
     pg->handle("s", f);

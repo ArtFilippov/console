@@ -13,9 +13,11 @@ PgSwitch::PgSwitch(std::string title_, std::vector<std::shared_ptr<Page>> pgs) :
     }
     // clang-format off
     auto mainPg = snew<PgScroll>(
+        "_",
         title_,
         "enter page: ",
         snew<PgBase>(
+            "_",
             options
         ),
         50
@@ -29,7 +31,7 @@ PgSwitch::PgSwitch(std::string title_, std::vector<std::shared_ptr<Page>> pgs) :
 
 void PgSwitch::handle(std::string cmd, Focus &onMe) {
     if (onMe) {
-        int newPgIt = common::stoi(cmd).value_or(pgIt);
+        std::size_t newPgIt = static_cast<std::size_t>(common::stoi(cmd).value_or(pgIt));
         if (newPgIt < pages.size() && newPgIt > 0) {
             pgIt = newPgIt;
         }

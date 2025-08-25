@@ -26,6 +26,7 @@ class console::Focus {
     const Focus &operator=(Focus &&other) {
         focusOnMe = other.focusOnMe;
         other.focusOnMe = false;
+        return *this;
     }
 };
 

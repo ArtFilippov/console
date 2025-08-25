@@ -13,7 +13,6 @@ PgReqSwitch::PgReqSwitch(std::string title_, std::shared_ptr<Dialog> dlg) : titl
         for (auto dlg : dialogs) {
             auto tit = common::print(dlg->request()->data(), dlg->request()->size()).str();
 
-            std::string tit;
             if (tit.size() > 50) {
                 tit = tit.substr(50);
             }
@@ -21,6 +20,8 @@ PgReqSwitch::PgReqSwitch(std::string title_, std::shared_ptr<Dialog> dlg) : titl
             pages.push_back(snew<PgResList>(tit, dlg));
         }
     };
+
+    dlg->subDialogs(f);
 
     pg = snew<PgSwitch>(title_, pages);
 }

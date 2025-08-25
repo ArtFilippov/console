@@ -4,7 +4,7 @@ using namespace console;
 
 PgBase::PgBase(std::string title_, std::string body) : title_(title_), body(body) {}
 
-void PgBase::handle(std::string cmd, Focus &f) {}
+void PgBase::handle(std::string, Focus &) {}
 
 std::string PgBase::page() const { return body; }
 

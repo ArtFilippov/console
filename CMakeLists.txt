@@ -67,7 +67,7 @@ set(main_lib_dest "console/lib/console")
 
 add_subdirectory(src/Console)
 
-# add_subdirectory(src/Test)
+add_subdirectory(src/Test)
 
 
 install(FILES console-config.cmake DESTINATION ${main_lib_dest})

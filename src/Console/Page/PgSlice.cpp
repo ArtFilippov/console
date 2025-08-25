@@ -19,9 +19,8 @@ std::string PgSlice::page() const {
         if (i >= from) {
             if (std::getline(iss, line)) {
                 window += line;
-            } else {
-                window += '\n';
             }
+            window += '\n';
         }
     }
 

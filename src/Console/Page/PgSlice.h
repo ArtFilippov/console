@@ -11,9 +11,9 @@ class PgSlice;
 
 class console::PgSlice : public Page {
     std::string title_;
-    std::shared_ptr<Page> pg;
     int from;
     int to;
+    std::shared_ptr<Page> pg;
 
   public:
     PgSlice(std::string title_, int lineFrom, int lineTo, std::shared_ptr<Page> pg);

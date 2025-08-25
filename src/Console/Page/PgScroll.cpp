@@ -8,8 +8,7 @@ using namespace console;
 
 PgScroll::PgScroll(std::string title_, std::string top, std::string bottom, std::shared_ptr<Page> body,
                    std::size_t lines)
-    : title_(title_), top(top), bottom(bottom), body(body), lines(lines), endLine(lines),
-      bodyLines(common::linesOf(body->page())) {}
+    : title_(title_), top(top), bottom(bottom), body(body), lines(lines), endLine(lines) {}
 
 void PgScroll::handle(std::string cmd, Focus &f) {
     if (!f) {
@@ -17,7 +16,7 @@ void PgScroll::handle(std::string cmd, Focus &f) {
         return;
     }
 
-    if (cmd == "s" && endLine < bodyLines) {
+    if (cmd == "s" && endLine < common::linesOf(body->page())) {
         ++endLine;
     } else if (cmd == "w" && endLine > lines) {
         --endLine;
@@ -26,7 +25,8 @@ void PgScroll::handle(std::string cmd, Focus &f) {
 
 std::string PgScroll::page() const {
     auto allBodyLines = common::linesOf(body->page());
-    int scroll = bodyLines - common::linesOf(top) - common::linesOf(bottom);
+    int scroll = static_cast<int>(allBodyLines - common::linesOf(top) - common::linesOf(bottom));
+
     std::string middle;
     if (scroll > 0) {
         middle = std::make_shared<PgSlice>("_", endLine - lines, endLine, body)->page();

@@ -6,7 +6,7 @@ using namespace console;
 
 PgResList::PgResList(std::string title_, std::shared_ptr<Dialog> dlg) : title_(title_), dlg(dlg) {}
 
-void PgResList::handle(std::string cmd, Focus &onMe) {}
+void PgResList::handle(std::string, Focus &) {}
 
 std::string PgResList::page() const {
     auto update = [this](const std::vector<data_t> &responses) {

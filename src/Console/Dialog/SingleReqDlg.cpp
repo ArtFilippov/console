@@ -13,7 +13,7 @@ void SingleReqDlg::responses(std::function<void(const std::vector<data_t> &)> fn
 
 data_t SingleReqDlg::request() const { return req; }
 
-void SingleReqDlg::newMsgs(data_t req, data_t res) {
+void SingleReqDlg::newMsgs(data_t, data_t res) {
     std::unique_lock lg{mut};
     resp.push_back(res);
 }

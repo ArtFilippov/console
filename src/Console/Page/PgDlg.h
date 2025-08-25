@@ -13,9 +13,9 @@ class PgDlg;
 }
 
 class console::PgDlg : public Page {
+    std::string title_;
     std::shared_ptr<Dialog> dlg;
 
-    std::string title_;
     std::shared_ptr<Page> reqList;
     std::optional<PgSwitch::PgBack> frozen;
     Focus onFrozen;
